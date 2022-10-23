@@ -1,5 +1,7 @@
 package com.mnr.springsecurity_docker.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,8 +25,12 @@ public class Account {
     private Long id;
 
     @Column(unique = true)
+    @NotNull
     private String username;
 
+    //dont show encoded password
+    @JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
+    @NotNull
     private String password;
 
     private boolean enabled=true;

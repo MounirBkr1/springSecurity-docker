@@ -40,12 +40,12 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<Employee> addEmployees(@RequestBody Employee employee){
-        employee.setId(employeeService.getAllEmployee().size() +1);
+        //employee.setId(employeeService.getAllEmployee().size() +1);
         return ResponseEntity.created(getLocation(employee.getId())).body(employeeService.addEmployee(employee));
 
     }
 
-    private URI getLocation(int id) {
+    protected static URI getLocation(int id) {
         return fromCurrentRequest().path("{id}").buildAndExpand(id).toUri();
 
     }
